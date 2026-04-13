@@ -1,5 +1,11 @@
+# Base dependencies for pipeline and analysis
+# core pipeline
 pandas==2.2.2
-pyarrow==15.0.2
 numpy==1.26.4
+pyarrow==15.0.2
 requests==2.32.3
 python-dotenv==1.0.1
+
+# analysis + extras
+matplotlib==3.8.4
+fastparquet==2024.2.0
