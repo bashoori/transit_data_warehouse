@@ -49,7 +49,7 @@ Warehouse layer for analytics.
 
 Two versions are implemented to show how the model evolves from structure to usability.
 
-![Top Routes](analysis/output/top_routes.png)
+![translink_visual](analysis/output/translink_visual.png)
 
 ---
 
