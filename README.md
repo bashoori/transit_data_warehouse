@@ -112,7 +112,7 @@ data/raw/google_transit.zip
 ---
 
 ## Project Structure
-
+```
 transit_data_warehouse/
 ├── README.md
 ├── requirements.txt
@@ -138,7 +138,7 @@ transit_data_warehouse/
 │   ├── test_gold.py
 │   ├── test_gold_v2.py
 │   └── run_all_tests.py
-
+```
 ---
 
 ## Data Quality
