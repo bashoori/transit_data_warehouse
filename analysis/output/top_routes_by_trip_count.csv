@@ -1,0 +1,11 @@
+route_id,trip_count,route_long_name,route_type,route_text_color,route_color,agency_id,route_url,route_desc,route_short_name
+30053,4752,Expo Line,1,FFFFFF,0033a0,TL,https://translink.ca/schedules-and-maps/line/expo-line/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_line&utm_term=expo-line,,
+13686,3340,Canada Line,1,FFFFFF,007c9f,TL,https://translink.ca/schedules-and-maps/line/canada-line/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_line&utm_term=canada-line,,
+30052,2562,Millennium Line,1,333333,ffcd00,TL,https://translink.ca/schedules-and-maps/line/millennium-line/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_line&utm_term=millennium-line,,
+6641,1902,Commercial-Broadway/UBC (B-Line),3,FFFFFF,d04110,TL,https://translink.ca/schedules-and-maps/route/99/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=99,,099
+37810,1630,41st Ave,3,FFFFFF,008522,TL,https://translink.ca/schedules-and-maps/route/R4/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=R4,,R4
+6624,1395,Metrotown Station/Stanley Park,3,,,TL,https://translink.ca/schedules-and-maps/route/19/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=19,,019
+46604,1327,Scott Rd,3,FFFFFF,008522,TL,https://translink.ca/schedules-and-maps/route/R6/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=R6,,R6
+6636,1324,Metrotown Station/Dunbar Loop/UBC,3,,,TL,https://translink.ca/schedules-and-maps/route/49/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=49,,049
+6615,1306,Robson/Downtown,3,,,TL,https://translink.ca/schedules-and-maps/route/5/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=5,,005
+6616,1306,Davie/Downtown,3,,,TL,https://translink.ca/schedules-and-maps/route/6/direction/0/schedule?utm_source=referral&utm_medium=google+maps&utm_campaign=gtfs&utm_content=schedules_route&utm_term=6,,006

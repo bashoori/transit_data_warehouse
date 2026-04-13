@@ -1,6 +1,6 @@
-from test3_bronze import run_bronze_tests
-from test2_silver import run_silver_tests
-from test2_gold import run_gold_tests
+from tests.test_bronze import run_bronze_tests
+from tests.test_silver import run_silver_tests
+from tests.test_gold import run_gold_tests
 
 
 def run_all_tests() -> None:

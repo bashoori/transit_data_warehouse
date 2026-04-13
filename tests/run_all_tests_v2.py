@@ -1,5 +1,5 @@
-from test3_bronze import run_bronze_tests
-from test2_silver import run_silver_tests
+from tests.test_bronze import run_bronze_tests
+from tests.test_silver import run_silver_tests
 from test_gold_v2 import run_gold_v2_tests
 
 
