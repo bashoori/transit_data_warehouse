@@ -1,17 +1,17 @@
 # TransLink GTFS Data Warehouse
 
-A medallion-style data engineering project built on the real TransLink GTFS feed, designed to move from raw transit data to a structured, analysis-ready warehouse.
+A medallion-style data engineering project built on the TransLink GTFS feed, designed to move from raw transit data to a structured, analysis-ready warehouse.
 
 ---
 
 ## Goal
 
-Build a reliable, end-to-end data pipeline that transforms raw GTFS data into a dimensional model that supports real analytical use cases.
+Design and implement a reliable data pipeline that transforms raw GTFS data into a dimensional model that supports real analytical questions.
 
-This project focuses on:
+The focus is on:
 
 - preserving raw data fidelity at ingestion  
-- structuring and validating data for consistency  
+- enforcing data quality and consistency across layers  
 - modeling data into fact and dimension tables  
 - evolving the warehouse to support time-based analysis  
 
@@ -25,7 +25,7 @@ Raw ingestion layer.
 
 - Stores GTFS tables exactly as received from the source zip  
 - No transformation or filtering  
-- Acts as the source of truth  
+- Serves as the source of truth for all downstream layers  
 
 Source: https://www.transit.land/feeds
 
@@ -39,7 +39,7 @@ Cleaning and standardization layer.
 - enforce required keys (`trip_id`, `route_id`, `stop_id`, `service_id`)  
 - remove duplicates  
 - handle null values  
-- prepare data for downstream modeling  
+- prepare data for consistent downstream modeling  
 
 ---
 
@@ -47,7 +47,7 @@ Cleaning and standardization layer.
 
 Warehouse layer for analytics.
 
-Two versions are implemented to show design evolution.
+Two versions are implemented to show how the model evolves from structure to usability.
 
 ---
 
@@ -69,35 +69,36 @@ Initial dimensional model built from cleaned GTFS data.
 - `fact_stop_time`
 
 Focus:
-- clean medallion flow  
-- basic dimensional modeling  
-- stable, testable pipeline  
+- establishing a clean medallion pipeline  
+- building a stable dimensional model  
+- validating structure and data quality  
 
 ---
 
 ### V2: Time-Aware Warehouse
 
-Extended model to support real transit analysis.
+Extends the model to support real transit analysis.
 
 Adds:
 
-- `dim_date` generated from service calendar  
-- GTFS time normalization (`HH:MM:SS` including values beyond 24:00:00)  
+- `dim_date` derived from service calendars  
+- normalization of GTFS time values (including times beyond 24:00:00)  
 - derived metrics such as:
   - trip duration (minutes)
   - arrival and departure seconds
-  - hourly service buckets  
+  - hourly service distribution  
 
-New table:
+**New table**
 - `dim_date`
 
-Enhanced facts:
-- `fact_trip_summary` → includes trip duration  
-- `fact_stop_time` → includes time-based features  
+**Enhanced facts**
+- `fact_trip_summary` includes trip duration  
+- `fact_stop_time` includes time-based attributes  
 
 Focus:
+- enabling time-based analysis  
+- handling domain-specific complexities of transit data  
 - making the warehouse usable for real questions  
-- handling domain-specific complexity (GTFS time format)  
 
 ---
 
@@ -107,11 +108,14 @@ Real TransLink GTFS static feed.
 
 Expected location:
 
+```
 data/raw/google_transit.zip
+```
 
 ---
 
 ## Project Structure
+
 ```
 transit_data_warehouse/
 ├── README.md
@@ -138,7 +142,11 @@ transit_data_warehouse/
 │   ├── test_gold.py
 │   ├── test_gold_v2.py
 │   └── run_all_tests.py
+├── analysis/
+│   ├── report_v2.py
+│   └── output/
 ```
+
 ---
 
 ## Data Quality
@@ -149,42 +157,98 @@ Checks include:
 
 - required files exist  
 - tables are not empty  
-- required columns exist  
-- no null values in key fields  
-- no duplicate primary keys  
+- required columns are present  
+- key fields contain no null values  
+- dimension keys are not duplicated  
 
 Run all tests:
 
+```
 python tests/run_all_tests.py
+```
 
 Run V2 tests:
 
+```
 python tests/run_all_tests_v2.py
+```
 
 ---
 
 ## How to Run
 
+```
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
 
 ### Run full pipeline (V1)
 
+```
 python src/pipeline.py
+```
 
 ### Run Gold V2
 
+```
 python src/gold/warehouse_v2.py
+```
+
+### Generate Analysis Report
+
+```
+python analysis/report_v2.py
+```
+
+---
+
+## Example Analysis
+
+Using the V2 warehouse, analytical outputs and visual summaries are generated to understand transit patterns.
+
+### Top Routes by Trip Volume
+
+![Top Routes](analysis/output/top_routes.png)
+
+High-frequency routes represent core transit corridors and service demand concentration.
+
+---
+
+### Average Trip Duration by Route
+
+![Trip Duration](analysis/output/trip_duration.png)
+
+Longer routes highlight operational complexity and potential scheduling challenges.
+
+---
+
+### Service Activity by Hour
+
+![Departure Hours](analysis/output/departure_hours.png)
+
+Clear peaks in service activity indicate commuting patterns and peak transit demand windows.
+
+---
+
+### Weekday vs Weekend Service
+
+Data output available in:
+
+```
+analysis/output/weekday_vs_weekend_service.csv
+```
+
+This comparison shows how service levels shift between weekday operations and weekend schedules.
 
 ---
 
 ## Example Analytical Questions
 
-The V2 model enables questions such as:
+The V2 model supports questions such as:
 
-- How many trips run per route per day?
-- What are the busiest hours of service?
+- Which routes run the highest number of trips?
+- What are the busiest service hours across the network?
 - What is the average trip duration by route?
 - How does service differ between weekdays and weekends?
 
@@ -194,8 +258,8 @@ The V2 model enables questions such as:
 
 - GTFS time values can exceed 24:00:00 and are normalized into seconds  
 - Calendar data is expanded into a proper date dimension  
-- The warehouse separates structure (V1) from analytical usability (V2)  
-- Each layer only depends on the layer before it  
+- Each layer depends only on the layer before it  
+- The model evolves from structural correctness (V1) to analytical usability (V2)  
 
 ---
 
@@ -211,9 +275,11 @@ The V2 model enables questions such as:
 
 ## Why this project matters
 
-This is not just a data pipeline. It shows:
+This project focuses on how data systems are built and improved over time.
 
-- how to structure data across layers  
-- how to enforce data quality  
-- how to evolve a warehouse toward real analytical use  
-- how to handle domain-specific data challenges  
+It demonstrates:
+
+- structuring data across layered architectures  
+- enforcing data quality within pipelines  
+- translating raw operational data into analytical models  
+- handling domain-specific challenges such as GTFS time and serv
