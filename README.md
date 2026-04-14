@@ -1,7 +1,4 @@
 # TransLink GTFS Data Warehouse
-🚀 Project Views  
-![Visitors](https://komarev.com/ghpvc/?username=bashoori&repo=transit_data_warehouse&label=Views&color=0e75b6)
-![Repo Views](https://visitor-badge.laobi.icu/badge?page_id=bashoori.transit_data_warehouse)
 
 A medallion-style data engineering project built on the TransLink GTFS feed, designed to move from raw transit data to a structured, analysis-ready warehouse.
 
@@ -290,6 +287,5 @@ It demonstrates:
 - handling domain-specific challenges such as GTFS time and serv
 
 
+![Repo Views](https://visitor-badge.laobi.icu/badge?page_id=bashoori.transit_data_warehouse)
 
-
-![Visitors](https://komarev.com/ghpvc/?username=bashoori&repo=transit_data_warehouse&color=blue)
